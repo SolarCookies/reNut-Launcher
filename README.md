@@ -42,3 +42,7 @@ If the game is up-to-date it will show the launch button.
 
 While the game is running the launcher will not let you launch again until you close the game.
 <img width="1867" height="1007" alt="image" src="https://github.com/user-attachments/assets/447364a8-5e9d-4f48-9390-26f2e8335776" />
+
+If the launcher detects that the current verison is out of date it will prompt the user to update.
+<img width="1321" height="787" alt="image" src="https://github.com/user-attachments/assets/f9264022-a479-4554-9197-1a76ecbc5cd6" />
+
