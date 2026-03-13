@@ -1,11 +1,11 @@
-workspace "NB-Launcher"
+workspace "reNut-Launcher"
     architecture "x64"
     configurations { "Release", "Debug" }
-    startproject "NB-Launcher"
+    startproject "reNut-Launcher"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "NB-Launcher"
+project "reNut-Launcher"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
@@ -31,9 +31,7 @@ project "NB-Launcher"
         "Vendors/stb_image/**.cpp",
         "Vendors/imguii/**.h",
         "Vendors/imguii/**.cpp",
-        "Vendors/glad.c",
-        "Vendors/extract-xiso/extract-xiso.c",
-        "Vendors/extract-xiso/win32/**.c"
+        "Vendors/glad.c"
     }
     
     -- Organize files under a filter called "ImGui" "stb_image"

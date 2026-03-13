@@ -1,4 +1,5 @@
 #include "IsoExtraction.h"
+#include "INIManager.h"
 #include <iostream>
 #include <stdio.h>
 #include <chrono>
@@ -45,15 +46,27 @@ std::string OpenIsoFileDialog() {
     return result;
 }
 
-std::string EscapeForCmd(const std::string& path) {
-    std::string escaped = path;
-    size_t pos = 0;
-    while ((pos = escaped.find("&", pos)) != std::string::npos) {
-        escaped.replace(pos, 1, "^&");
-        pos += 2;
+std::string GetSafePathName(const std::string& longPath) {
+    // Convert to wide string
+    int wideLength = MultiByteToWideChar(CP_UTF8, 0, longPath.c_str(), -1, nullptr, 0);
+    std::wstring widePath(wideLength - 1, L'\0');
+    MultiByteToWideChar(CP_UTF8, 0, longPath.c_str(), -1, &widePath[0], wideLength);
+
+    // Get short path name
+    DWORD shortLength = ::GetShortPathNameW(widePath.c_str(), nullptr, 0);
+    if (shortLength == 0) {
+        return longPath; // Fall back to original path if short path fails
     }
 
-    return escaped;
+    std::wstring shortWidePath(shortLength - 1, L'\0');
+    ::GetShortPathNameW(widePath.c_str(), &shortWidePath[0], shortLength);
+
+    // Convert back to UTF-8
+    int utf8Length = WideCharToMultiByte(CP_UTF8, 0, shortWidePath.c_str(), -1, nullptr, 0, nullptr, nullptr);
+    std::string shortPath(utf8Length - 1, '\0');
+    WideCharToMultiByte(CP_UTF8, 0, shortWidePath.c_str(), -1, &shortPath[0], utf8Length, nullptr, nullptr);
+
+    return shortPath;
 }
 
 void ExtractIsoAsync(const std::string& isoPath, std::shared_ptr<IsoExtractionProgress> progress) {
@@ -95,7 +108,13 @@ void ExtractIsoAsync(const std::string& isoPath, std::shared_ptr<IsoExtractionPr
         }
 
         std::filesystem::path exisoDir = std::filesystem::path(exisoPath).parent_path();
-        std::filesystem::path gameAssetsPath = exisoDir / ".." / "Game" / "assets";
+
+        std::string gameBasePath = INI::GetString("GamePath", "Game/", "Game");
+        if (!gameBasePath.empty() && gameBasePath.back() != '\\' && gameBasePath.back() != '/') {
+            gameBasePath += "/";
+        }
+
+        std::filesystem::path gameAssetsPath = std::filesystem::path(gameBasePath) / "Game" / "assets";
         std::string absoluteGameAssetsPath = std::filesystem::absolute(gameAssetsPath).string();
 
         std::filesystem::path gameAssetsDir = absoluteGameAssetsPath;
@@ -104,11 +123,10 @@ void ExtractIsoAsync(const std::string& isoPath, std::shared_ptr<IsoExtractionPr
         }
         std::filesystem::create_directories(gameAssetsDir);
 
-        std::string escapedIsoPath = EscapeForCmd(isoPath);
+        std::string shortIsoPath = GetSafePathName(isoPath);
+        std::string shortDestPath = GetSafePathName(absoluteGameAssetsPath);
 
-        std::string escapedDestPath = EscapeForCmd(absoluteGameAssetsPath);
-
-        std::string arguments = "unpack \"" + escapedIsoPath + "\" \"" + escapedDestPath + "\"";
+        std::string arguments = "unpack \"" + shortIsoPath + "\" \"" + shortDestPath + "\"";
 
         STARTUPINFOA si;
         PROCESS_INFORMATION pi;

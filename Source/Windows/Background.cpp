@@ -175,6 +175,8 @@ void BackgroundManager::Render(ImGuiViewport* viewport) {
     ImGui::SetNextWindowPos(viewport->Pos);
     ImGui::SetNextWindowSize(viewport->Size);
     ImGui::SetNextWindowViewport(viewport->ID);
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 0));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -259,6 +261,7 @@ void BackgroundManager::Render(ImGuiViewport* viewport) {
 
     ImGui::End();
     ImGui::PopStyleVar(3);
+	ImGui::PopStyleColor(2);
 }
 
 void BackgroundManager::Cleanup() {

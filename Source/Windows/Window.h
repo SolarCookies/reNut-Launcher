@@ -87,8 +87,10 @@ class VinceWindow {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		ImGui::NewFrame();
-
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0));
+        ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 0));
 		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
+		ImGui::PopStyleColor(2);
 	}
 	void EndFrame() {
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

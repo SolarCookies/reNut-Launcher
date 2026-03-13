@@ -1,4 +1,5 @@
 #include "VersionManager.h"
+#include "INIManager.h"
 #include <fstream>
 #include <filesystem>
 #include <iostream>
@@ -68,5 +69,9 @@ void VersionManager::RemoveVersionFile() {
 }
 
 const std::string VersionManager::GetVersionFilePath() {
-    return "Game/version.txt";
+    std::string basePath = INI::GetString("GamePath", "Game/", "Game");
+    if (!basePath.empty() && basePath.back() != '\\' && basePath.back() != '/') {
+        basePath += "/";
+    }
+    return basePath + "Game/version.txt";
 }
