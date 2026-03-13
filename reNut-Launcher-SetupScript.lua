@@ -1,6 +1,6 @@
 workspace "reNut-Launcher"
     architecture "x64"
-    configurations { "Release", "Debug" }
+    configurations { "Release" }
     startproject "reNut-Launcher"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -14,7 +14,6 @@ project "reNut-Launcher"
     targetdir ("Build/" .. outputdir .. "/%{prj.name}")
     objdir ("Build/Intermediates/" .. outputdir .. "/%{prj.name}")
 
-    
     includedirs {
         "Vendors",
         "Vendors/GLFW/include",
@@ -33,7 +32,7 @@ project "reNut-Launcher"
         "Vendors/imguii/**.cpp",
         "Vendors/glad.c"
     }
-    
+
     -- Organize files under a filter called "ImGui" "stb_image"
     vpaths {
         ["Vendors/ImGui/*"] = { "Vendors/imguii/**.h", "Vendors/imguii/**.cpp" },
@@ -42,7 +41,7 @@ project "reNut-Launcher"
         ["Launcher/*"] = { "Source/**.h", "Source/**.cpp" }
 
     }
-  
+
     libdirs {
         "Vendors/GLFW/lib-vc2022",
         "Vendors/zlib_x64-windows-static/lib"
@@ -67,7 +66,9 @@ project "reNut-Launcher"
         defines { "NDEBUG" }
         optimize "On"
 
-    filter "configurations:Debug"
-        defines { "DEBUG" }
-        symbols "On"
-        optimize "Off"
+-- Custom post-build commands to copy Assets and configuration files
+postbuildcommands {
+    "{COPY} ./Assets %{cfg.targetdir}/Assets",
+    "{COPY} ./config.ini %{cfg.targetdir}",
+    "{COPY} ./imgui.ini %{cfg.targetdir}"
+}

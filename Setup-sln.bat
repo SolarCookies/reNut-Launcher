@@ -9,5 +9,5 @@ cd /d "%SCRIPT_DIR%"
 print "%SCRIPT_DIR%"
 
 REM Run Premake with the Lua file
-%SCRIPT_DIR%Vendors\bin\premake\Windows\premake5.exe --file="%SCRIPT_DIR%reNut-Launcher-SetupScript.lua" vs2022
+%SCRIPT_DIR%Vendors\bin\premake\Windows\premake5.exe --file="%SCRIPT_DIR%reNut-Launcher-SetupScript.lua" vs2026
 pause
