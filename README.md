@@ -1,5 +1,5 @@
 # reNut-Launcher
-A lightweight launcher designed for rexglue-based projects.
+A lightweight C++ GLFW ImGUI launcher designed for rexglue-based projects.
 
 reNut-Launcher is built to work with most rexglue projects with minimal setup.  
 In most cases, you only need to configure the `.ini` file and adjust a few constants in the code (such as the number of backgrounds).
