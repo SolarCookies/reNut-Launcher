@@ -242,6 +242,20 @@ int main(int, char**)
 
 				ImGui::EndMenu();
 			}
+
+			if (ImGui::BeginMenu("About")) {
+				if (ImGui::MenuItem(INI::GetString("ProjectTitle", "reNut", "About").c_str())) {
+					std::string projectUrl = INI::GetString("ProjectPage", "https://github.com/masterspike52/reNut", "About");
+					ShellExecuteA(NULL, "open", projectUrl.c_str(), NULL, NULL, SW_SHOWNORMAL);
+				}
+
+				if (ImGui::MenuItem("RexGlue")) {
+					ShellExecuteA(NULL, "open", "https://github.com/rexglue/rexglue-sdk", NULL, NULL, SW_SHOWNORMAL);
+				}
+
+				ImGui::EndMenu();
+			}
+
 			ImGui::EndMainMenuBar();
 		}
 		PopSmartStyle();
