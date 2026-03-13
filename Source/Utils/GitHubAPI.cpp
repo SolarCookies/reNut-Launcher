@@ -26,6 +26,14 @@ void GitHubAPI::FetchLatestCommitShaAsync(const std::string& repo, const std::st
     }).detach();
 }
 
+void GitHubAPI::FetchLatestCommitShaForFileAsync(const std::string& repo, const std::string& branch,
+                                                 const std::string& filePath, std::function<void(std::string)> callback) {
+    std::thread([repo, branch, filePath, callback]() {
+        auto sha = FetchLatestCommitShaForFile(repo, branch, filePath);
+        callback(sha);
+    }).detach();
+}
+
 std::vector<GitCommit> GitHubAPI::FetchCommits(const std::string& repo, const std::string& branch) {
     std::vector<GitCommit> commits;
 
@@ -85,6 +93,36 @@ std::string GitHubAPI::FetchLatestCommitSha(const std::string& repo, const std::
             if (shaPos != std::string::npos) {
                 latestSha = ExtractJsonString(jsonResponse, "sha", shaPos);
                 std::cout << "Latest commit SHA: " << latestSha << std::endl;
+            }
+        }
+    }
+    catch (...) {
+      // Handle errors eventually
+    }
+
+    return latestSha;
+}
+
+std::string GitHubAPI::FetchLatestCommitShaForFile(const std::string& repo, const std::string& branch, const std::string& filePath) {
+    std::string latestSha;
+
+    try {
+        // Use the path parameter to filter commits that affect the specific file
+        std::wstring path = L"/repos/" + std::wstring(repo.begin(), repo.end()) + 
+                           L"/commits?sha=" + std::wstring(branch.begin(), branch.end()) + 
+                           L"&path=" + std::wstring(filePath.begin(), filePath.end()) + L"&per_page=1";
+
+        std::cout << "Fetching latest commit for file: " << filePath << std::endl;
+
+        std::string jsonResponse = HttpGet(L"api.github.com", path);
+
+        if (!jsonResponse.empty()) {
+            size_t shaPos = jsonResponse.find("\"sha\":");
+            if (shaPos != std::string::npos) {
+                latestSha = ExtractJsonString(jsonResponse, "sha", shaPos);
+                std::cout << "Latest commit SHA for " << filePath << ": " << latestSha << std::endl;
+            } else {
+                std::cout << "No commits found for file: " << filePath << std::endl;
             }
         }
     }

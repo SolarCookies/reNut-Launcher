@@ -73,18 +73,21 @@ int main(int, char**)
 
 	if (!isCheckingForUpdates) {
 		isCheckingForUpdates = true;
-		GitHubAPI::FetchLatestCommitShaAsync(
+		// Check for updates based on the executable file only
+		std::string exeRelativePath = INI::GetString("ExeRelativePath", "out/build/win-amd64-relwithdebinfo/renut.exe", "Github");
+		GitHubAPI::FetchLatestCommitShaForFileAsync(
 			INI::GetString("Name", "masterspike52/reNut", "Github"),
 			INI::GetString("Branch", "main", "Github"),
+			exeRelativePath,
 			[&](const std::string& sha) {
 				latestCommitSha = sha;
 				isCheckingForUpdates = false;
 
 				if (!savedCommitSha.empty() && !latestCommitSha.empty() && savedCommitSha != latestCommitSha) {
 					updateAvailable = true;
-					std::cout << "Update available! Current: " << savedCommitSha << " Latest: " << latestCommitSha << std::endl;
+					std::cout << "Executable update available! Current: " << savedCommitSha << " Latest: " << latestCommitSha << std::endl;
 				} else if (savedCommitSha == latestCommitSha) {
-					std::cout << "Up to date! Version: " << savedCommitSha << std::endl;
+					std::cout << "Executable up to date! Version: " << savedCommitSha << std::endl;
 				}
 			});
 	}
@@ -124,19 +127,22 @@ int main(int, char**)
 		if (currentTime - lastUpdateCheck >= updateCheckInterval && !isCheckingForUpdates) {
 			lastUpdateCheck = currentTime;
 			isCheckingForUpdates = true;
-			GitHubAPI::FetchLatestCommitShaAsync(
+			// Check for updates based on the executable file only
+			std::string exeRelativePath = INI::GetString("ExeRelativePath", "out/build/win-amd64-relwithdebinfo/renut.exe", "Github");
+			GitHubAPI::FetchLatestCommitShaForFileAsync(
 				INI::GetString("Name", "masterspike52/reNut", "Github"),
 				INI::GetString("Branch", "main", "Github"),
+				exeRelativePath,
 				[&](const std::string& sha) {
 					latestCommitSha = sha;
 					isCheckingForUpdates = false;
 
 					if (!savedCommitSha.empty() && !latestCommitSha.empty() && savedCommitSha != latestCommitSha) {
 						updateAvailable = true;
-						std::cout << "Update check: Update available! Current: " << savedCommitSha << " Latest: " << latestCommitSha << std::endl;
+						std::cout << "Update check: Executable update available! Current: " << savedCommitSha << " Latest: " << latestCommitSha << std::endl;
 					} else if (savedCommitSha == latestCommitSha) {
 						updateAvailable = false;
-						std::cout << "Update check: Up to date! Version: " << savedCommitSha << std::endl;
+						std::cout << "Update check: Executable up to date! Version: " << savedCommitSha << std::endl;
 					}
 				});
 		}
