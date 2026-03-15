@@ -109,7 +109,7 @@ void ExtractIsoAsync(const std::string& isoPath, std::shared_ptr<IsoExtractionPr
 
         std::filesystem::path exisoDir = std::filesystem::path(exisoPath).parent_path();
 
-        std::string gameBasePath = INI::GetString("GamePath", "Game/", "Game");
+        std::string gameBasePath = INI::GetString("GamePath", "./Game/", "Game");
         if (!gameBasePath.empty() && gameBasePath.back() != '\\' && gameBasePath.back() != '/') {
             gameBasePath += "/";
         }

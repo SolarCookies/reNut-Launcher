@@ -22,10 +22,10 @@ void Patches::Init() {
     patches.clear();
     bool onlineSuccess = false;
 
-    HINTERNET hInternet = InternetOpenA(INI::GetString("Title", "reNut Launcher", "Window").c_str(),INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+    HINTERNET hInternet = InternetOpenA(INI::GetString("Title", "reTiP Launcher", "Window").c_str(),INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
     if (hInternet) {
         HINTERNET hConnect = InternetOpenUrlA(hInternet, 
-            INI::GetString("PatchesLocation","https://raw.githubusercontent.com/masterspike52/reNut/main/src/renut_engine/hooks.cpp","Github").c_str(), 
+            INI::GetString("PatchesLocation","https://raw.githubusercontent.com/SolarCookies/TiP-Recomp/main/src/tip_engine/hooks.cpp","Github").c_str(), 
             NULL, 0, INTERNET_FLAG_RELOAD, 0);
 
         if (hConnect) {
@@ -243,7 +243,7 @@ std::string Patches::GetPatchLaunchConfig() {
     INI::SetString(patch.name + "_type", patch.type, "PatchTypes");
   }
 
-  config += INI::GetString("launch-args", " --gpu_allow_invalid_fetch_constants=true --enable_console=false --vsync=off", "launch");
+  config += INI::GetString("launch-args", " --gpu_allow_invalid_fetch_constants=true --enable_console=false --scribble_heap=true --vsync=off", "launch");
 
   return config;
 }

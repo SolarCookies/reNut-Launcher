@@ -69,7 +69,7 @@ void VersionManager::RemoveVersionFile() {
 }
 
 const std::string VersionManager::GetVersionFilePath() {
-    std::string basePath = INI::GetString("GamePath", "Game/", "Game");
+    std::string basePath = INI::GetString("GamePath", "./Game/", "Game");
     if (!basePath.empty() && basePath.back() != '\\' && basePath.back() != '/') {
         basePath += "/";
     }

@@ -22,7 +22,7 @@ struct PendingTexture {
 
 class BackgroundManager {
 private:
-    static const int numberOfBackgrounds = 16;
+    static const int numberOfBackgrounds = 20;
     GLuint backgroundTextures[numberOfBackgrounds];
     std::atomic<bool> backgroundsLoaded[numberOfBackgrounds];
     std::atomic<bool> allBackgroundsLoaded{ false };
@@ -45,10 +45,10 @@ private:
     int titleWidth = 0;
     int titleHeight = 0;
 
-    const float titlePosX = INI::GetFloat("TitlePosX", 0.25f, "Title");
-    const float titlePosY = INI::GetFloat("TitlePosY", 0.3f, "Title");
+    const float titlePosX = INI::GetFloat("TitlePosX", 0.27f, "Title");
+    const float titlePosY = INI::GetFloat("TitlePosY", 0.35f, "Title");
     const float titleRotation = INI::GetFloat("TitleRotation", 0.0f, "Title");
-    const float titleScale = INI::GetFloat("TitleScale", 0.4f, "Title");
+    const float titleScale = INI::GetFloat("TitleScale", 0.18f, "Title");
 
     std::thread backgroundLoader;
     bool isInitialized = false;

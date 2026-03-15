@@ -16,7 +16,7 @@ void VinceWindow::init()
 	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 
 	window = std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)>(
-    glfwCreateWindow(1280, 720, INI::GetString("Title", "reNut Launcher", "Window").c_str(),nullptr, nullptr),
+    glfwCreateWindow(1280, 720, INI::GetString("Title", "reTiP Launcher", "Window").c_str(),nullptr, nullptr),
 		&glfwDestroyWindow
 	);
 	if (!window) {
@@ -47,8 +47,8 @@ void VinceWindow::SetupImGuiIO()
 
 		ImGui::StyleColorsDark();
 
-		BasicTextFont = io.Fonts->AddFontFromFileTTF("Assets/Comiccrazy.ttf", 18.0f);
-		BasicTitleFont = io.Fonts->AddFontFromFileTTF("Assets/Lithos.ttf", 30.0f);
+		BasicTextFont = io.Fonts->AddFontFromFileTTF("Assets/ComicSansMS.ttf", 24.0f);
+		BasicTitleFont = io.Fonts->AddFontFromFileTTF("Assets/Funhouse.otf", 30.0f);
 
 		ImGui_ImplGlfw_InitForOpenGL(window.get(), true);
 		ImGui_ImplOpenGL3_Init(glsl_version);

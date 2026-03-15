@@ -39,7 +39,7 @@ int main(int, char**)
 
 	INI::EnsureINIFileExists();
 
-	VinceWindow window1(1920, 1080, INI::GetString("Title", "N&B Launcher", "Window").c_str());
+	VinceWindow window1(1920, 1080, INI::GetString("Title", "reTiP Launcher", "Window").c_str());
 
 	BackgroundManager backgroundManager;
 	ChangeLog changeLog;
@@ -64,10 +64,10 @@ int main(int, char**)
 	backgroundManager.Initialize();
 
 	changeLog.Initialize(
-			INI::GetString("Name", "masterspike52/reNut", "Github"),
+			INI::GetString("Name", "SolarCookies/TiP-Recomp", "Github"),
 			INI::GetString("Branch", "main", "Github"));
 
-	credits.Initialize(INI::GetString("Name", "masterspike52/reNut", "Github"));
+	credits.Initialize(INI::GetString("Name", "SolarCookies/TiP-Recomp", "Github"));
 
 	savedCommitSha = VersionManager::LoadSavedVersion();
 
@@ -76,7 +76,7 @@ int main(int, char**)
 		// Check for updates based on the executable file only
 		std::string exeRelativePath = INI::GetString("ExeRelativePath", "out/build/win-amd64-relwithdebinfo/renut.exe", "Github");
 		GitHubAPI::FetchLatestCommitShaForFileAsync(
-			INI::GetString("Name", "masterspike52/reNut", "Github"),
+			INI::GetString("Name", "SolarCookies/TiP-Recomp", "Github"),
 			INI::GetString("Branch", "main", "Github"),
 			exeRelativePath,
 			[&](const std::string& sha) {
@@ -128,9 +128,9 @@ int main(int, char**)
 			lastUpdateCheck = currentTime;
 			isCheckingForUpdates = true;
 			// Check for updates based on the executable file only
-			std::string exeRelativePath = INI::GetString("ExeRelativePath", "out/build/win-amd64-relwithdebinfo/renut.exe", "Github");
+			std::string exeRelativePath = INI::GetString("ExeRelativePath", "out/build/win-amd64-relwithdebinfo/retip.exe", "Github");
 			GitHubAPI::FetchLatestCommitShaForFileAsync(
-				INI::GetString("Name", "masterspike52/reNut", "Github"),
+				INI::GetString("Name", "SolarCookies/TiP-Recomp", "Github"),
 				INI::GetString("Branch", "main", "Github"),
 				exeRelativePath,
 				[&](const std::string& sha) {
@@ -191,14 +191,14 @@ int main(int, char**)
 
 				if (ImGui::MenuItem("Uninstall")) {
 					// Uninstall game files - use dynamic paths
-					std::string gameBasePath = INI::GetString("GamePath", "Game/", "Game");
+					std::string gameBasePath = INI::GetString("GamePath", "./Game/", "Game");
 					if (!gameBasePath.empty() && gameBasePath.back() != '\\' && gameBasePath.back() != '/') {
 						gameBasePath += "/";
 					}
 
 					std::string exeName = INI::GetString("ExeName", "renut.exe", "Game");
-					std::string fullGamePath = gameBasePath + "Game/" + exeName;
-					std::string gameAssetsDir = gameBasePath + "Game/assets/";
+					std::string fullGamePath = gameBasePath + exeName;
+					std::string gameAssetsDir = gameBasePath + "assets/";
 
 					bool hasRemovedFiles = false;
 
@@ -250,8 +250,8 @@ int main(int, char**)
 			}
 
 			if (ImGui::BeginMenu("About")) {
-				if (ImGui::MenuItem(INI::GetString("ProjectTitle", "reNut", "About").c_str())) {
-					std::string projectUrl = INI::GetString("ProjectPage", "https://github.com/masterspike52/reNut", "About");
+				if (ImGui::MenuItem(INI::GetString("ProjectTitle", "reTiP", "About").c_str())) {
+					std::string projectUrl = INI::GetString("ProjectPage", "https://github.com/SolarCookies/TiP-Recomp", "About");
 					ShellExecuteA(NULL, "open", projectUrl.c_str(), NULL, NULL, SW_SHOWNORMAL);
 				}
 
@@ -279,7 +279,7 @@ int main(int, char**)
 		//Warning
 		{
 			ImGui::Begin("NotPlayableYetWarning");
-			ImGui::Text("Not intended to be in a playable state yet!");
+			ImGui::Text("Not intended to fully playable state yet! You may run into visual glitches and crashes.");
 			ImGui::End();
 		}
 		PopSmartStyle();
@@ -293,13 +293,13 @@ int main(int, char**)
 		ImGui::PushFont(BasicTitleFont);
 
 		// Get dynamic game path
-		std::string gameBasePath = INI::GetString("GamePath", "Game/", "Game");
+		std::string gameBasePath = INI::GetString("GamePath", "./Game/", "Game");
 		if (!gameBasePath.empty() && gameBasePath.back() != '\\' && gameBasePath.back() != '/') {
 			gameBasePath += "/";
 		}
 
-		std::string exeName = INI::GetString("ExeName", "renut.exe", "Game");
-		std::string fullGamePath = gameBasePath + "Game/" + exeName;
+		std::string exeName = INI::GetString("ExeName", "reTiP.exe", "Game");
+		std::string fullGamePath = gameBasePath + exeName;
 		bool gameExists = std::filesystem::exists(fullGamePath);
 
 		if (isoProgress && isoProgress->isExtracting.load()) {
@@ -320,7 +320,7 @@ int main(int, char**)
 			}
 		}
 		else if (downloadProgress && !downloadProgress->isComplete.load()) {
-      ImGui::Text(INI::GetString("downloading_text","Downloading renut.exe...", "game").c_str());
+      ImGui::Text(INI::GetString("downloading_text","Downloading retip.exe...", "game").c_str());
 
 			float progress = downloadProgress->GetPercentage() / 100.0f;
 			char progressText[64];
@@ -342,7 +342,7 @@ int main(int, char**)
 				if (ImGui::Button("Retry", ImVec2(-1.0f, 30.0f))) {
 					downloadProgress = std::make_shared<DownloadProgress>();
 					FileDownloader::DownloadFileAsync(
-            INI::GetString("DownloadFile","https://github.com/masterspike52/reNut/raw/main/out/build/win-amd64-relwithdebinfo/renut.exe","github").c_str(),
+            INI::GetString("DownloadFile","https://github.com/SolarCookies/TiP-Recomp/raw/main/out/build/win-amd64-relwithdebinfo/retip.exe","github").c_str(),
 						fullGamePath,
 						downloadProgress,
 						[&]() {
@@ -366,13 +366,13 @@ int main(int, char**)
 			}
 
 			// Get dynamic game paths
-			std::string gameBasePath = INI::GetString("GamePath", "Game/", "Game");
+			std::string gameBasePath = INI::GetString("GamePath", "./Game/", "Game");
 			if (!gameBasePath.empty() && gameBasePath.back() != '\\' && gameBasePath.back() != '/') {
 				gameBasePath += "/";
 			}
 
-			std::string defaultXexPath = gameBasePath + "Game/assets/default.xex";
-			std::string gameAssetsDir = gameBasePath + "Game/assets/";
+			std::string defaultXexPath = gameBasePath + "assets/default.xex";
+			std::string gameAssetsDir = gameBasePath + "assets/";
 			bool assetsExist = false;
 
 			if (std::filesystem::exists(gameAssetsDir) && std::filesystem::is_directory(gameAssetsDir)) {

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{12B0F352-FE7D-E758-E711-587FD37EC3BD}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>reNut-Launcher</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)Build\Release-windows-x86_64\reNut-Launcher\</OutDir>
+    <IntDir>$(ProjectDir)Build\Intermediates\Release-windows-x86_64\reNut-Launcher\</IntDir>
+    <TargetName>reNut-Launcher</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Vendors;Vendors\GLFW\include;Vendors\imguii;Vendors\zlib_x64-windows-static\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;dwmapi.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Vendors\GLFW\lib-vc2022;Vendors\zlib_x64-windows-static\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>IF EXIST Assets\ (xcopy /Q /E /Y /I Assets Build\Release-windows-x86_64\reNut-Launcher\Assets &gt; nul) ELSE (xcopy /Q /Y /I Assets Build\Release-windows-x86_64\reNut-Launcher\Assets &gt; nul)
+IF EXIST config.ini\ (xcopy /Q /E /Y /I config.ini Build\Release-windows-x86_64\reNut-Launcher &gt; nul) ELSE (xcopy /Q /Y /I config.ini Build\Release-windows-x86_64\reNut-Launcher &gt; nul)
+IF EXIST imgui.ini\ (xcopy /Q /E /Y /I imgui.ini Build\Release-windows-x86_64\reNut-Launcher &gt; nul) ELSE (xcopy /Q /Y /I imgui.ini Build\Release-windows-x86_64\reNut-Launcher &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Utils\Crypto\sha256.h" />
+    <ClInclude Include="Source\Utils\FileDownloader.h" />
+    <ClInclude Include="Source\Utils\GitHubAPI.h" />
+    <ClInclude Include="Source\Utils\INIManager.h" />
+    <ClInclude Include="Source\Utils\IsoExtraction.h" />
+    <ClInclude Include="Source\Utils\LogSystem.h" />
+    <ClInclude Include="Source\Utils\OpenGL_Stuff.h" />
+    <ClInclude Include="Source\Utils\VersionManager.h" />
+    <ClInclude Include="Source\Utils\ZLibHelpers.h" />
+    <ClInclude Include="Source\Utils\ini.h" />
+    <ClInclude Include="Source\Windows\Background.h" />
+    <ClInclude Include="Source\Windows\ChangeLog.h" />
+    <ClInclude Include="Source\Windows\Credits.h" />
+    <ClInclude Include="Source\Windows\Fonts.h" />
+    <ClInclude Include="Source\Windows\Patches.h" />
+    <ClInclude Include="Source\Windows\SmartStyles.h" />
+    <ClInclude Include="Source\Windows\Window.h" />
+    <ClInclude Include="Vendors\imguii\imconfig.h" />
+    <ClInclude Include="Vendors\imguii\imgui.h" />
+    <ClInclude Include="Vendors\imguii\imgui_impl_glfw.h" />
+    <ClInclude Include="Vendors\imguii\imgui_impl_opengl3.h" />
+    <ClInclude Include="Vendors\imguii\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Vendors\imguii\imgui_internal.h" />
+    <ClInclude Include="Vendors\imguii\imstb_rectpack.h" />
+    <ClInclude Include="Vendors\imguii\imstb_textedit.h" />
+    <ClInclude Include="Vendors\imguii\imstb_truetype.h" />
+    <ClInclude Include="Vendors\stb_image\stb_image.h" />
+    <ClInclude Include="Vendors\stb_image\stb_image_write.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Launcher.cpp" />
+    <ClCompile Include="Source\Utils\Crypto\sha256.cpp" />
+    <ClCompile Include="Source\Utils\FileDownloader.cpp" />
+    <ClCompile Include="Source\Utils\GitHubAPI.cpp" />
+    <ClCompile Include="Source\Utils\IsoExtraction.cpp" />
+    <ClCompile Include="Source\Utils\LogSystem.cpp" />
+    <ClCompile Include="Source\Utils\VersionManager.cpp" />
+    <ClCompile Include="Source\Windows\Background.cpp" />
+    <ClCompile Include="Source\Windows\ChangeLog.cpp" />
+    <ClCompile Include="Source\Windows\Credits.cpp" />
+    <ClCompile Include="Source\Windows\Patches.cpp" />
+    <ClCompile Include="Source\Windows\Window.cpp" />
+    <ClCompile Include="Vendors\glad.c" />
+    <ClCompile Include="Vendors\imguii\imgui.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_demo.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_draw.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_tables.cpp" />
+    <ClCompile Include="Vendors\imguii\imgui_widgets.cpp" />
+    <ClCompile Include="Vendors\stb_image\stb_image.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

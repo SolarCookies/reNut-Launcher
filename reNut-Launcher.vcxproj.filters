@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{57ACF9E2-4379-54EE-6C92-429658BE897C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher\Utils">
+      <UniqueIdentifier>{F7527B37-E320-6F3D-CCB4-DF63B8214BA2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher\Utils\Crypto">
+      <UniqueIdentifier>{C76F5D6F-33DC-186A-FCCF-B0C768FB3AD2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher\Windows">
+      <UniqueIdentifier>{91BD3D84-7DB6-5CD6-A6E8-415B92403CE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendors">
+      <UniqueIdentifier>{665268D3-D231-E76E-DB49-724547A84DD0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendors\ImGui">
+      <UniqueIdentifier>{107C9A07-7C3C-163E-4577-5FBBB1F65A1A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendors\glad">
+      <UniqueIdentifier>{2D95E66C-19F8-7511-C27D-AEC7AEBF4194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendors\stb_image">
+      <UniqueIdentifier>{80BA2187-ECD0-1F1D-3548-AB3EA19DF0A4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Utils\Crypto\sha256.h">
+      <Filter>Launcher\Utils\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\FileDownloader.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\GitHubAPI.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\INIManager.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\IsoExtraction.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\LogSystem.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\OpenGL_Stuff.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\VersionManager.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\ZLibHelpers.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\ini.h">
+      <Filter>Launcher\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Background.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\ChangeLog.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Credits.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Fonts.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Patches.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\SmartStyles.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Window.h">
+      <Filter>Launcher\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imconfig.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imgui.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imgui_impl_glfw.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imgui_impl_opengl3.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imgui_impl_opengl3_loader.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imgui_internal.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imstb_rectpack.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imstb_textedit.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\imguii\imstb_truetype.h">
+      <Filter>Vendors\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\stb_image\stb_image.h">
+      <Filter>Vendors\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendors\stb_image\stb_image_write.h">
+      <Filter>Vendors\stb_image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Launcher.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\Crypto\sha256.cpp">
+      <Filter>Launcher\Utils\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\FileDownloader.cpp">
+      <Filter>Launcher\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\GitHubAPI.cpp">
+      <Filter>Launcher\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\IsoExtraction.cpp">
+      <Filter>Launcher\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\LogSystem.cpp">
+      <Filter>Launcher\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\VersionManager.cpp">
+      <Filter>Launcher\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\Background.cpp">
+      <Filter>Launcher\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\ChangeLog.cpp">
+      <Filter>Launcher\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\Credits.cpp">
+      <Filter>Launcher\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\Patches.cpp">
+      <Filter>Launcher\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\Window.cpp">
+      <Filter>Launcher\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\glad.c">
+      <Filter>Vendors\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_demo.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_draw.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_impl_glfw.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_impl_opengl3.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_tables.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\imguii\imgui_widgets.cpp">
+      <Filter>Vendors\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendors\stb_image\stb_image.cpp">
+      <Filter>Vendors\stb_image</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
